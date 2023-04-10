@@ -35,11 +35,13 @@ Partial Class _Default
         txtPassword.Text = ""
     End Sub
 
-    Private Sub Save()
+    Private Function Save() As Boolean
         Dim objUser As New User(ViewState("Id"))
+        Dim created As Boolean = False
+
         With objUser
             If VerifyRegister() = True Then
-                Exit Sub
+                Return False
             End If
 
             .Username = txtUsername.Text
@@ -49,14 +51,18 @@ Partial Class _Default
         End With
 
         objUser = Nothing
-    End Sub
+        Return True
+    End Function
 #End Region
 
 #Region "Register Events"
     Protected Sub btnRegister_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRegister.Click
-        Save()
-        CleanFields()
-        Response.Redirect("~/Views/Login.aspx")
+        If Save() = True Then
+            CleanFields()
+            Response.Redirect("~/Views/Login.aspx")
+        Else
+            Response.Redirect("~/Views/Register.aspx")
+        End If
     End Sub
 #End Region
 

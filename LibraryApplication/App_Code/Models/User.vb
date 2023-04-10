@@ -1,6 +1,5 @@
 ﻿Imports System.Data
 Imports System.Web.Helpers
-Imports System.Web.Services.Description
 
 Public Class User
 
