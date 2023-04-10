@@ -11,9 +11,16 @@
                 <form id="form1" runat="server" class="login-form">
                     <p>Library CRUD</p>
                     <hr />
-                    <asp:TextBox runat="server" required="required" type="text" id="txtUsername" name="username" placeholder="username" maxlength="50"/>
-                    <asp:TextBox runat="server" required="required" type="email" id="txtEmail" name="email" placeholder="e-mail" maxlength="50"/>
-                    <asp:TextBox runat="server" required="required" type="password" id="txtPassword" name="password" placeholder="password" maxlength="50"/>
+                    <asp:TextBox runat="server" required="required" type="text" ID="txtFullName" name="text" placeholder="full name" MaxLength="50" />
+
+                    <asp:TextBox runat="server" required="required" type="text" ID="txtUsername" name="username" placeholder="username" MaxLength="50" />
+                    
+                    <asp:TextBox runat="server" required="required" type="email" ID="txtEmail" name="email" placeholder="e-mail" MaxLength="50" />
+                    
+                    <asp:TextBox runat="server" required="required" type="password" ID="txtPassword" name="password" placeholder="password" MaxLength="50" />
+                    
+                    <asp:Label runat="server" id="lblErrorMessage" CssClass="mb-3" Font-Bold="True" ForeColor="Red" />
+                    
                     <asp:Button ID="btnRegister" runat="server" class="btnRegister" Text="register" BackColor="#76b852" />
                     <p class="message">Already registered? <a href="Login.aspx">Login now</a></p>
                 </form>

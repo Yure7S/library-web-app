@@ -1,5 +1,7 @@
 ﻿Imports System.Data
+Imports System.Diagnostics
 Imports System.Web.Helpers
+
 
 Partial Class _Default
     Inherits System.Web.UI.Page
@@ -25,15 +27,10 @@ Partial Class _Default
             Dim verifyPassword As Boolean = Crypto.VerifyHashedPassword(dataRow("Password").ToString(), txtPassword.Text.ToString())
 
             If verifyPassword = True Then
-                MsgBox("Login realizado com sucesso.")
                 FormsAuthentication.RedirectFromLoginPage(dataRow("username").ToString(), False)
                 success = True
                 Return success
-            Else
-                MsgBox("Senha incorreta.")
             End If
-        Else
-            MsgBox("Usuário não encontrado.")
         End If
 
         Return success
@@ -45,9 +42,9 @@ Partial Class _Default
 
     Protected Sub btnLogin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLogin.Click
         If Login() = True Then
-            Response.Redirect("~/Views/Home.aspx")
+            Response.Redirect("~/Views/Books/Home.aspx")
         Else
-            Response.Redirect("~/Views/Login.aspx")
+            lblInvalid.Text = "Invalid Username/Password."
         End If
     End Sub
 
