@@ -54,7 +54,7 @@
         End With
 
         objUser = Nothing
-        Session("Success") = "Usuário cadastrado com sucesso."
+        Session("Success") = "User registered successfuly."
 
         Return True
     End Function

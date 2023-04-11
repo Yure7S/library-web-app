@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Runtime.InteropServices
 
 Partial Class _Default
     Inherits Page
@@ -28,6 +29,7 @@ Partial Class _Default
                 .Gender = txtGender.Text
                 .Save()
             End With
+            Session("Success") = "Livro criado com sucesso."
         End If
 
         objBook = Nothing
@@ -41,7 +43,6 @@ Partial Class _Default
     Protected Sub btnCreateBook_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCreateBook.Click
         If CreateBook() = True Then
             Response.Redirect("~/Views/Books/Home.aspx")
-            MsgBox("Livro criado com sucesso.")
         Else
             CleanFields()
         End If

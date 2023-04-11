@@ -1,7 +1,4 @@
 ﻿Imports System.Data
-Imports System.Net
-Imports System.Web.Helpers
-Imports Microsoft.VisualBasic
 
 Public Class Book
     Public Property Id As Integer
@@ -46,7 +43,7 @@ Public Class Book
         dataTable.Dispose()
     End Sub
 
-    Public Sub Obtain(ByVal code As Integer)
+    Public Function Obtain(ByVal code As Integer) As DataRow
         Dim connection As New Connection
         Dim dataTable As DataTable
         Dim dataRow As DataRow
@@ -66,11 +63,14 @@ Public Class Book
             Title = dataRow("Title")
             Description = dataRow("Description")
             Gender = dataRow("Gender")
-            ReleaseDate = dataRow("ReleaseDate")
+            Return dataRow
         End If
-    End Sub
+
+        Return Nothing
+    End Function
 
     Public Function Search(Optional ByVal sort As String = "",
+                           Optional ByVal id As Integer = 0,
                            Optional ByVal userId As Integer = 0,
                            Optional ByVal title As String = "") As DataTable
         Dim connection As New Connection
@@ -79,6 +79,10 @@ Public Class Book
         SQL.Append(" SELECT *")
         SQL.Append(" FROM Books")
         SQL.Append(" Where Id IS NOT NULL")
+
+        If id > 0 Then
+            SQL.Append(" AND UPPER(Id) = " & id)
+        End If
 
         If userId > 0 Then
             SQL.Append(" AND UPPER(UserId) = " & userId)
@@ -110,6 +114,21 @@ Public Class Book
 
         connection = Nothing
         Return lastCode
+    End Function
+
+    Public Function Delete(ByVal id As Integer) As Integer
+        Dim connection As New Connection
+        Dim SQL As New StringBuilder
+
+        SQL.Append(" DELETE")
+        SQL.Append(" FROM Books")
+        SQL.Append(" WHERE Id = " & id)
+
+        Dim affectedRows As Integer = connection.ExecuteSQL(SQL.ToString())
+
+        connection = Nothing
+
+        Return affectedRows
     End Function
 
 End Class

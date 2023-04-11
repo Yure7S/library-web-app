@@ -90,6 +90,7 @@ Public Class Connection
         If transaction Is Nothing Then
             connection = New SqlConnection(ConnectionString())
             command = New SqlCommand(SQL, connection)
+            connection.Open()
         End If
 
         command.CommandType = CommandType.Text

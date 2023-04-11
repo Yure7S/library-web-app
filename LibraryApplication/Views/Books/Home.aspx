@@ -9,10 +9,19 @@
 
         <hr />
         <h1>Library - CRUD</h1>
-        <hr />
         <form id="form1" runat="server">
+
+            <div class="container">
+                <asp:TextBox runat="server" required="required" type="text" ID="txtSearch" name="search" CssClass="form-control mr-sm-2" placeholder="search" MaxLength="50" />
+                <asp:Button ID="btnSearchBook" runat="server" class="btn btn-outline-success my-2 my-sm-0" Text="search book" />
+            </div>
+            <br />
+
+            <asp:Label ID="lblSuccess" runat="server" CssClass="mb-3" Font-Bold="True" ForeColor="Green" />
+
+            <hr />
+
             <asp:Button ID="btnCreateBook" runat="server" class="btnCreateBook btn btn-success" Text="create book" />
-            <asp:Button ID="btnEditBook" runat="server" class="btnCreateBook btn btn-warning" Text="edit book" />
             <asp:Button ID="btnLogout" runat="server" class="btnLogout btn btn-danger" Text="logout" />
 
             <br />
@@ -29,8 +38,11 @@
                         <asp:TemplateField HeaderText="" SortExpression="" Visible="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="text-center">
                             <ItemTemplate>
                                 <div class="btn-group">
-                                    <asp:LinkButton ID="lnkExcluirPessoa" runat="server" class="btn btn-social-icon bg-red" CommandName="EXCLUIR" ToolTip="ExcluirPessoa">
-                                        <i id="iExcluirPessoa" runat="server" class="fa fa-trash"></i>
+                                    <asp:LinkButton ID="lnkDeleteBook" runat="server" class="btn btn-social-icon bg-red" CommandName="DeleteBook" ToolTip="DeleteBook">
+                                        <p class="btn btn-danger">Delete</p>
+                                    </asp:LinkButton>
+                                    <asp:LinkButton ID="lnkDetailBook" runat="server" class="btn btn-social-icon bg-red" CommandName="DetailBook" ToolTip="DetailBook">
+                                        <p class="btn btn-primary">Details</p>
                                     </asp:LinkButton>
                                 </div>
                             </ItemTemplate>

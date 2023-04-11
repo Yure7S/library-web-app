@@ -70,7 +70,6 @@ Public Class User
             Email = dataRow("Email")
             Password = dataRow("Password")
             IsAdmin = dataRow("IsAdmin")
-            CreatedAt = dataRow("CreatedAt")
         End If
     End Sub
 
