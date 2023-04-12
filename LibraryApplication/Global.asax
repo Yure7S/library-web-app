@@ -11,8 +11,9 @@
 
         ' Books Routes
         routes.MapPageRoute("HomeRoute", "Books/", "~/Views/Books/Home.aspx")
-        routes.MapPageRoute("DetailBookRoute", "Books/{bookId}/", "~/Views/Books/Details.aspx")
         routes.MapPageRoute("CreateBookRoute", "Books/Create/", "~/Views/Books/Create.aspx")
+        routes.MapPageRoute("DetailBookRoute", "Books/{bookId}/", "~/Views/Books/Details.aspx")
+
     End Sub
 
     Sub Application_BeginRequest(ByVal sender As Object, ByVal e As EventArgs)
@@ -20,7 +21,7 @@
     End Sub
 
     Sub Application_AuthenticateRequest(ByVal sender As Object, ByVal e As EventArgs)
-        ' Fires upon attempting to authenticate the use
+        ' Fires upon attempting to authenticate the user
     End Sub
 
     Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)

@@ -42,7 +42,7 @@ Partial Class _Default
 
     Protected Sub btnCreateBook_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCreateBook.Click
         If CreateBook() = True Then
-            Response.Redirect("~/Views/Books/Home.aspx")
+            Response.Redirect(GetRouteUrl("HomeRoute", Nothing))
         Else
             CleanFields()
         End If
