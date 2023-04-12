@@ -4,8 +4,8 @@ Partial Class Views_Books_Details
     Inherits System.Web.UI.Page
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Not Page.IsPostBack Then
-            Dim myUri As Uri = HttpContext.Current.Request.Url
-            Dim bookId As Integer = HttpUtility.ParseQueryString(myUri.Query).Get("bookId")
+            Dim myUri As String = HttpContext.Current.Request.Url.AbsoluteUri
+            Dim bookId As Integer = myUri.Substring(myUri.IndexOf("/") + 24)
             BookDetails(bookId)
         End If
     End Sub

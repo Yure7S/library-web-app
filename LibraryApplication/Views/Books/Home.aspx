@@ -12,7 +12,7 @@
         <form id="form1" runat="server">
 
             <div class="container">
-                <asp:TextBox runat="server" required="required" type="text" ID="txtSearch" name="search" CssClass="form-control mr-sm-2" placeholder="search" MaxLength="50" />
+                <asp:TextBox runat="server" type="text" ID="txtSearch" name="search" CssClass="form-control mr-sm-2" placeholder="search" MaxLength="50" />
                 <asp:Button ID="btnSearchBook" runat="server" class="btn btn-outline-success my-2 my-sm-0" Text="search book" />
             </div>
             <br />

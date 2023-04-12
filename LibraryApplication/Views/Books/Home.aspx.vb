@@ -28,7 +28,6 @@ Partial Class _Default
         dataTable = book.Search(title:=txtSearch.Text)
 
         If dataTable.Rows.Count > 0 Then
-
             Debug.WriteLine(dataTable.Rows.Count)
         Else
             Debug.WriteLine("nada")
@@ -41,13 +40,13 @@ Partial Class _Default
     Protected Sub btnLogout_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLogout.Click
         If User.Identity.IsAuthenticated Then
             Logout()
-            Response.Redirect("~/Views/Login.aspx")
+            Response.Redirect(GetRouteUrl("LoginRoute", Nothing))
         End If
     End Sub
 
     Protected Sub btnCreateBook_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCreateBook.Click
         If User.Identity.IsAuthenticated Then
-            Response.Redirect("~/Views/Books/Create.aspx")
+            Response.Redirect(GetRouteUrl("CreateBookRoute", Nothing))
         End If
     End Sub
 
@@ -62,28 +61,15 @@ Partial Class _Default
 #Region "Listing Functions"
 
     Private Sub LoadGrid()
-        Dim objBooks As New Book()
+        Dim books As New Book()
 
         Dim objUser As New User()
         Dim username = User.Identity.Name
         Dim dataTable As DataTable = objUser.Search(username:=username.ToString())
         Dim userId = dataTable.Rows(0)("Id")
 
-        grdBooks.DataSource = objBooks.Search(userId:=userId)
+        grdBooks.DataSource = books.Search(userId:=userId)
         grdBooks.DataBind()
-    End Sub
-
-    Private Sub DetailBook(ByVal bookId As Integer)
-        Dim dataTable As DataTable
-        Dim dataRow As DataRow
-        Dim book As New Book()
-
-        dataTable = book.Search(id:=bookId)
-
-        If dataTable.Rows.Count > 0 Then
-            dataRow = dataTable.Rows(0)
-        End If
-
     End Sub
 
     Private Sub DeleteBook(ByVal bookId As Integer)
@@ -101,15 +87,14 @@ Partial Class _Default
 #Region "Listing Events"
 
     Protected Sub grdBooks_RowCommand(ByVal source As Object, ByVal e As GridViewCommandEventArgs) Handles grdBooks.RowCommand
-        Dim bookId As Integer = grdBooks.DataKeys(e.CommandArgument).Item(0)
+        Dim book As Integer = grdBooks.DataKeys(e.CommandArgument).Item(0)
 
         If e.CommandName = "" Then
-            Response.Redirect("~/Views/Books/Home.aspx")
+            Response.Redirect(GetRouteUrl("HomeRoute", Nothing))
         ElseIf e.CommandName = "DeleteBook" Then
-            DeleteBook(bookId)
+            DeleteBook(book)
         ElseIf e.CommandName = "DetailBook" Then
-            DetailBook(bookId)
-            Response.Redirect($"~/Views/Books/Details.aspx?bookId={bookId}")
+            Response.Redirect(GetRouteUrl("DetailBookRoute", New With {.bookId = book}))
         End If
     End Sub
 
