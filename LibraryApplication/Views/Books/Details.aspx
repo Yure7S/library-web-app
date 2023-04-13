@@ -11,23 +11,21 @@
         <hr />
     </div>
     <section class="container" runat="server">
-        <form id="form1" runat="server">
-            <div>
-                <br />
-                <label class="form-label">Created By:</label>
-                <asp:Label runat="server" ID="lblUsername" />
-                <br />
-                <label class="form-label">Title:</label>
-                <asp:Label runat="server" ID="lblTitle" />
-                <br />
-                <label class="form-label">Description:</label>
-                <asp:Label runat="server" ID="lblDescription" />
-                <br />
-                <label class="form-label">Gender:</label>
-                <asp:Label runat="server" ID="lblGender" />
-                <br />
-            </div>
-        </form>
+        <div>
+            <br />
+            <label class="form-label">Created By:</label>
+            <asp:Label runat="server" ID="lblUsername" />
+            <br />
+            <label class="form-label">Title:</label>
+            <asp:Label runat="server" ID="lblTitle" />
+            <br />
+            <label class="form-label">Description:</label>
+            <asp:Label runat="server" ID="lblDescription" />
+            <br />
+            <label class="form-label">Gender:</label>
+            <asp:Label runat="server" ID="lblGender" />
+            <br />
+        </div>
     </section>
 
 </asp:Content>

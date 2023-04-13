@@ -10,10 +10,10 @@
         routes.MapPageRoute("RegisterRoute", "Users/Register/", "~/Views/Authentication/Register.aspx")
 
         ' Books Routes
-        routes.MapPageRoute("HomeRoute", "Books/", "~/Views/Books/Home.aspx")
+        routes.MapPageRoute("HomeRoute", "", "~/Views/Books/Home.aspx")
         routes.MapPageRoute("CreateBookRoute", "Books/Create/", "~/Views/Books/Create.aspx")
+        routes.MapPageRoute("SearchBookRoute", "Books/", "~/Views/Books/Search.aspx")
         routes.MapPageRoute("DetailBookRoute", "Books/{bookId}/", "~/Views/Books/Details.aspx")
-
     End Sub
 
     Sub Application_BeginRequest(ByVal sender As Object, ByVal e As EventArgs)

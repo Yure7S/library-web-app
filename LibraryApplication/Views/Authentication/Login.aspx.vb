@@ -2,7 +2,7 @@
 Imports System.Web.Helpers
 
 
-Partial Class _Default
+Partial Class Views_Authentication_Login
     Inherits Page
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         lblSuccess.Text = Session("Success")

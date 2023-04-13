@@ -1,4 +1,4 @@
-﻿Partial Class _Default
+﻿Partial Class Views_Authentication_Register
     Inherits Page
 
 #Region "Register Functions"
@@ -65,7 +65,7 @@
     Protected Sub btnRegister_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRegister.Click
         If Save() = True Then
             CleanFields()
-            Response.Redirect("~/Views/Login.aspx")
+            Response.Redirect(GetRouteUrl("RegisterRoute", Nothing))
         End If
     End Sub
 

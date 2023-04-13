@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports System.Runtime.InteropServices
 
-Partial Class _Default
+Partial Class Views_Books_Create
     Inherits Page
 
 #Region "Create Book Functions"

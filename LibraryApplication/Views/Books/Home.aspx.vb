@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports System.Diagnostics
 
-Partial Class _Default
+Partial Class Views_Books_Home
     Inherits Page
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Not Page.IsPostBack Then
@@ -21,18 +21,6 @@ Partial Class _Default
         End Try
     End Sub
 
-    Private Sub SearchByName()
-        Dim book As New Book()
-        Dim dataTable As DataTable
-
-        dataTable = book.Search(title:=txtSearch.Text)
-
-        If dataTable.Rows.Count > 0 Then
-            Debug.WriteLine(dataTable.Rows.Count)
-        Else
-            Debug.WriteLine("nada")
-        End If
-    End Sub
 #End Region
 
 #Region "Home Events"
@@ -41,18 +29,13 @@ Partial Class _Default
         If User.Identity.IsAuthenticated Then
             Logout()
             Response.Redirect(GetRouteUrl("LoginRoute", Nothing))
+            Session("Success") = Nothing
         End If
     End Sub
 
     Protected Sub btnCreateBook_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCreateBook.Click
         If User.Identity.IsAuthenticated Then
             Response.Redirect(GetRouteUrl("CreateBookRoute", Nothing))
-        End If
-    End Sub
-
-    Protected Sub btnSearchBook_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearchBook.Click
-        If User.Identity.IsAuthenticated Then
-            SearchByName()
         End If
     End Sub
 
@@ -69,7 +52,13 @@ Partial Class _Default
         Dim userId = dataTable.Rows(0)("Id")
 
         grdBooks.DataSource = books.Search(userId:=userId)
-        grdBooks.DataBind()
+
+        If grdBooks.DataSource.Rows.Count > 0 Then
+            grdBooks.DataBind()
+        Else
+            lblBooks.Text = "Você não tem livros cadastrados. Cadastre-os clicando no botão acima."
+        End If
+
     End Sub
 
     Private Sub DeleteBook(ByVal bookId As Integer)
@@ -79,6 +68,7 @@ Partial Class _Default
             Session("Success") = "Livro deletado com sucesso"
         End If
 
+        Response.Redirect(Request.RawUrl)
         LoadGrid()
     End Sub
 
