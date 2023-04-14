@@ -14,7 +14,6 @@ Partial Class Views_Books_Create
 
     Public Function CreateBook() As Boolean
         Dim objBook As New Book(ViewState("Id"))
-        Dim created As Boolean = True
 
         Dim objUser As New User()
         Dim username = User.Identity.Name

@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Diagnostics
 Imports System.Web.Helpers
 
 
@@ -13,7 +14,6 @@ Partial Class Views_Authentication_Login
         Dim dataTable As DataTable
         Dim dataRow As DataRow
         Dim user As New User
-        Dim success As Boolean = False
 
         dataTable = user.Search(username:=txtUsername.Text.ToString())
 
@@ -24,13 +24,13 @@ Partial Class Views_Authentication_Login
 
             If verifyPassword = True Then
                 FormsAuthentication.RedirectFromLoginPage(dataRow("username").ToString(), False)
+                Session("UserId") = dataRow("Id")
                 Session("Success") = "Login realizado com sucesso."
-                success = True
-                Return success
+                Return True
             End If
         End If
 
-        Return success
+        Return False
     End Function
 
 #End Region

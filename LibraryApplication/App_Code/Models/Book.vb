@@ -28,11 +28,11 @@ Public Class Book
 
         If dataTable.Rows.Count = 0 Then
             dataRow = dataTable.NewRow
+            dataRow("Id") = ObtainLastId() + 1
         Else
             dataRow = dataTable.Rows(0)
         End If
 
-        dataRow("Id") = ObtainLastId() + 1
         dataRow("UserId") = UserId
         dataRow("Title") = Title
         dataRow("Description") = Description
